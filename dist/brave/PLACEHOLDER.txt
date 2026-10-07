@@ -1,0 +1,15 @@
+BraveBrowserStandaloneSilentSetup.exe NO esta versionado en git (151 MB > limite de
+100 MB de GitHub). Colocar aca el asset oficial:
+
+  Release: v1.91.180 (canal Release estable) de https://github.com/brave/brave-browser
+  Asset:   BraveBrowserStandaloneSilentSetup.exe
+
+Descarga con GitHub CLI:
+  gh release download v1.91.180 --repo brave/brave-browser ^
+     --pattern "BraveBrowserStandaloneSilentSetup.exe" --dir .
+
+Verificacion (debe coincidir con SHA256SUMS de esta carpeta):
+  certutil -hashfile BraveBrowserStandaloneSilentSetup.exe SHA256
+  sha256 esperado: aca365fb42fcc09f3c13358743790e9b23e237f626eb0f91b686bbd4c00aea40
+
+Firma Authenticode esperada: CN="Brave Software, Inc." (Valid).

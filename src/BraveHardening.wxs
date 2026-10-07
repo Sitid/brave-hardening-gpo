@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="595961cd-fdd8-4c99-beea-9785cd6f98d2"
+           Name="Brave Hardening Policies"
+           Language="1033"
+           Version="1.0.0"
+           Manufacturer="IT Operations"
+           UpgradeCode="0451f875-db98-4a72-bb3c-84065b0a5d99">
+
+    <Package InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine"
+             Manufacturer="IT Operations"
+             Description="Politicas de hardening para Brave Browser"
+             Comments="Deshabilita Tor, IPFS, Wallet, VPN, Rewards, AI y telemetria. Shields queda activo por defecto." />
+
+    <Media Id="1" Cabinet="cab1.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir" />
+
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="BravePolicies"
+                 Guid="85a27f89-7b1e-4326-968a-45f00d65ca8c"
+                 Win64="yes">
+
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Policies\BraveSoftware\Brave">
+          <!-- Servicios de consumidor -->
+          <RegistryValue Name="TorDisabled"              Type="integer" Value="1" KeyPath="yes" />
+          <RegistryValue Name="IPFSEnabled"              Type="integer" Value="0" />
+          <RegistryValue Name="BraveWalletDisabled"      Type="integer" Value="1" />
+          <RegistryValue Name="BraveVPNDisabled"         Type="integer" Value="1" />
+          <RegistryValue Name="BraveRewardsDisabled"     Type="integer" Value="1" />
+          <RegistryValue Name="BraveAIChatEnabled"       Type="integer" Value="0" />
+          <RegistryValue Name="BraveNewsDisabled"        Type="integer" Value="1" />
+          <RegistryValue Name="BraveTalkDisabled"        Type="integer" Value="1" />
+          <!-- Telemetria -->
+          <RegistryValue Name="BraveP3AEnabled"          Type="integer" Value="0" />
+          <RegistryValue Name="BraveStatsPingEnabled"    Type="integer" Value="0" />
+          <RegistryValue Name="BraveWebDiscoveryEnabled" Type="integer" Value="0" />
+          <RegistryValue Name="MetricsReportingEnabled"  Type="integer" Value="0" />
+          <!-- Anti-fuga -->
+          <RegistryValue Name="SyncDisabled"             Type="integer" Value="1" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="MainFeature" Title="Brave Hardening Policies" Level="1">
+      <ComponentRef Id="BravePolicies" />
+    </Feature>
+
+  </Product>
+</Wix>

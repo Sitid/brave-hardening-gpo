@@ -1,0 +1,6 @@
+# El instalador oficial de Brave pesa ~151 MB y supera el limite de 100 MB de GitHub.
+# No se versiona; ver dist/brave/PLACEHOLDER.txt para re-descargarlo y verificarlo.
+dist/brave/*.exe
+
+# Artefacto de build: se genera con build.ps1 / build.sh
+dist/*.msi
